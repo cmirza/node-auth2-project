@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Users = require('./user-model');
 
-router.get('/users', (req, res) => {
+router.get('/', (req, res) => {
+    console.log('getting users')
     Users.find()
         .then(users => {
             res.status(200).json(users);
@@ -10,7 +11,7 @@ router.get('/users', (req, res) => {
         .catch(err => res.send(err)); 
 });
 
-router.post('/users', (req, res) => {
+router.post('/', (req, res) => {
     const { username, password } = req.body;
     const user = Users.findBy({ username }).first();
 
